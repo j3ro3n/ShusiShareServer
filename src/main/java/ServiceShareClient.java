@@ -28,6 +28,11 @@ public class ServiceShareClient implements Runnable {
                         }
                         continue;
                     case "3":
+                        String deletedFileName;
+                        while ((deletedFileName = in.readLine()) != null) {
+                            deleteFile(deletedFileName);
+                        }
+                    case "4":
                         System.exit(1);
 
                         break;
@@ -90,6 +95,15 @@ public class ServiceShareClient implements Runnable {
             System.out.println("File "+fileName+" sent to client.");
         } catch (Exception e) {
             System.err.println("File does not exist!");
+        }
+    }
+
+    public void deleteFile(String fileName) {
+        try {
+            File myFile = new File(fileName);
+            deleteFile(fileName);
+        } catch (Exception e) {
+            System.out.println("File does not exist!");
         }
     }
 }
