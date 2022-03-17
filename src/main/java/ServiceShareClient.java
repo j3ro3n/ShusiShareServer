@@ -19,18 +19,18 @@ public class ServiceShareClient implements Runnable {
             while ((clientSelection = in.readLine()) != null) {
                 switch (clientSelection) {
                     case "1":
-                        receiveFile();
+                        pullFile();
                         continue;
                     case "2":
                         String outGoingFileName;
                         while ((outGoingFileName = in.readLine()) != null) {
-                            sendFile(outGoingFileName);
+                            pushFile(outGoingFileName);
                         }
                         continue;
                     case "3":
-                        String deletedFileName;
-                        while ((deletedFileName = in.readLine()) != null) {
-                            deleteFile(deletedFileName);
+                        String removeFileName;
+                        while ((removeFileName = in.readLine()) != null) {
+                            removeFile(removeFileName);
                         }
                     case "4":
                         System.exit(1);
@@ -48,7 +48,7 @@ public class ServiceShareClient implements Runnable {
         }
     }
 
-    public void receiveFile() {
+    public void pullFile() {
         try {
             int bytesRead;
 
@@ -72,7 +72,7 @@ public class ServiceShareClient implements Runnable {
         }
     }
 
-    public void sendFile(String fileName) {
+    public void pushFile(String fileName) {
         try {
 
             File myFile = new File(fileName);  //handle file reading
@@ -98,10 +98,10 @@ public class ServiceShareClient implements Runnable {
         }
     }
 
-    public void deleteFile(String fileName) {
+    public void removeFile(String fileName) {
         try {
             File myFile = new File(fileName);
-            deleteFile(fileName);
+            removeFile(fileName);
         } catch (Exception e) {
             System.out.println("File does not exist!");
         }

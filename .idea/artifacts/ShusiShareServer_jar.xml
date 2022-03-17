@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ShusiShareServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ShusiShareServer_jar</output-path>
+    <root id="archive" name="ShusiShareServer.jar">
+      <element id="module-output" name="ShusiShareServer" />
+    </root>
+  </artifact>
+</component>
