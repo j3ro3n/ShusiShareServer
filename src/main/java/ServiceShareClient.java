@@ -97,13 +97,16 @@ public class ServiceShareClient implements Runnable {
             System.err.println("File does not exist!");
         }
     }
-
     public void removeFile(String fileName) {
         try {
             File myFile = new File(fileName);
-            removeFile(fileName);
-        } catch (Exception e) {
-            System.out.println("File does not exist!");
+            if(myFile.delete()){
+                System.out.println(myFile.getName() + " is deleted!");
+            }else{
+                System.out.println("Delete operation is failed.");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

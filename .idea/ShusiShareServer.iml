@@ -19,7 +19,6 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/jdk-17_windows-x64_bin" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="jdk-17_windows-x64_bin" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -30,5 +29,6 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/com.mysql.jdbc_5.1.5.jar" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="com.mysql.jdbc_5.1.5" level="project" />
   </component>
 </module>
