@@ -1,4 +1,5 @@
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,18 +8,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DbConnector {
-
-    public DbConnector connector = new DbConnector();
-    public ResultSet usersResult, filesResult;
-    public String sushiProtocol;
-
     private Connection connection;
     private Statement statement;
     //private DbConnector dbc = new DbConnector();
 
     private static String servername = "localhost";
     private static String username = "root";
-    private static String dbname = "sushidb";
+    private static String dbname = "thermostatdb";
     private static Integer portnumber = 3306;
     private static String password = "";
     public  static Connection getConnection() {
@@ -175,29 +171,4 @@ public class DbConnector {
         }
         return null;
     }
-/**
-    public void readFileSQL() {
-        String users = "select * from users";
-        String files = "select * from files";
-
-        usersResult = connector.getData(users);
-        filesResult = connector.getData(files);
-
-        System.out.println(users);
-        System.out.println(files);
-
-
-    }
-
-    public void insertFileSQL() {
-        sushiProtocol = new sushiProtocol;
-        String strProtocolSQL = "insert into FILES (file_id, file_name, file_file) values ('" + sushiProtocol
-
-
-    }
-
-    public void deleteFileSQL() {
-
-    }
- **/
 }
