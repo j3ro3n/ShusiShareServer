@@ -2,10 +2,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class FileShareServer {
+public class Server {
 
     private static ServerSocket serverSocket;
-    private static Socket clientSocket = null;
 
     public static void main(String[] args) throws IOException {
 
@@ -20,10 +19,10 @@ public class FileShareServer {
 
         while (true) {
             try {
-                clientSocket = serverSocket.accept();
-                System.out.println("Accepted connection : " + clientSocket);
+                Socket requestFromClient = serverSocket.accept();
+                System.out.println("Accepted connection : " + requestFromClient);
 
-                Thread t = new Thread(new ServiceShareClient(clientSocket));
+                Thread t = new Thread(new ServerFileShareHandler(requestFromClient));
 
                 t.start();
 

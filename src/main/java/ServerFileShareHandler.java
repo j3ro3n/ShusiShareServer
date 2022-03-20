@@ -1,12 +1,12 @@
 import java.io.*;
 import java.net.Socket;
 
-public class ServiceShareClient implements Runnable {
+public class ServerFileShareHandler implements Runnable {
 
     private Socket clientSocket;
     private BufferedReader in = null;
 
-    public ServiceShareClient(Socket client) {
+    public ServerFileShareHandler(Socket client) {
         this.clientSocket = client;
     }
 
@@ -20,13 +20,13 @@ public class ServiceShareClient implements Runnable {
                 switch (clientSelection) {
                     case "1":
                         pullFile();
-                        continue;
+                        break;
                     case "2":
                         String outGoingFileName;
                         while ((outGoingFileName = in.readLine()) != null) {
                             pushFile(outGoingFileName);
                         }
-                        continue;
+                        break;
                     case "3":
                         String removeFileName;
                         while ((removeFileName = in.readLine()) != null) {
@@ -101,12 +101,13 @@ public class ServiceShareClient implements Runnable {
         try {
             File myFile = new File(fileName);
             if(myFile.delete()){
-                System.out.println(myFile.getName() + " is deleted!");
+                System.out.println(myFile.getName() + " is removed!");
             }else{
-                System.out.println("Delete operation is failed.");
+                System.out.println("Failed to delete "+fileName);
             }
         }catch(Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("File does not exist!");
         }
     }
 }
