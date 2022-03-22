@@ -32,7 +32,14 @@ public class ServerFileShareHandler implements Runnable {
                         while ((removeFileName = in.readLine()) != null) {
                             removeFile(removeFileName);
                         }
-                    case "4":
+                        break;
+                    case"4":
+                        String syncFileName;
+                        while ((syncFileName = in.readLine()) != null) {
+                            syncFile(syncFileName);
+                        }
+                        break;
+                    case "5":
                         System.exit(1);
 
                         break;
@@ -110,4 +117,42 @@ public class ServerFileShareHandler implements Runnable {
             System.out.println("File does not exist!");
         }
     }
+
+    // Synchronise files to and from server
+    public void syncFile(String fileName){
+        FileInputStream fin;
+        FileOutputStream fout;
+        // Initializing a FileDescriptor
+        FileDescriptor fd;
+        File file = new File(fileName);
+        try {
+            fout= new FileOutputStream(file);
+            // This getFD() method is called before closing the output stream
+            fd= fout.getFD();
+            //passing FileDescriptor to another  FileOutputStream
+            FileOutputStream fout2= new FileOutputStream(fd);
+            //Hier kan fout gaan
+            //fout2.write("Hoi Sunny".getBytes());
+            fout2.write(fileName.getBytes());
+            // Use of sync() : to sync data to the source file
+            fd.sync();
+            System.out.println("Sync Successful");
+            fin = new FileInputStream(file);
+            fd=fin.getFD();
+            System.out.print("String value has been changed in file -----> ");
+            int i=0;
+            while((i=fin.read())!=-1)
+            {
+                System.out.print(i);
+            }
+            fout2.close();
+        }
+
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+
 }
